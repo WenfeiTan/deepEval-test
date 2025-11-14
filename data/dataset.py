@@ -5,5 +5,6 @@ dataset = EvaluationDataset(
     goldens=[
         Golden(input="帮我查一下今天上海的天气"),
         Golden(input="明天北京的天气怎么样？要不要带伞？"),
+        Golden(input="帮我查一下明天的天气"),   # ← 新增的
     ]
 )

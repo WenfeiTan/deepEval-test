@@ -1,13 +1,13 @@
 # agent/weather_agent.py
 from deepeval.tracing import observe, update_current_span
 from deepeval.test_case import LLMTestCase
-from deepeval.metrics import TaskCompletionMetric, ArgumentCorrectnessMetric
+from deepeval.metrics import TaskCompletionMetric
 
 from tools.weather_tool import weather_tool
 
 # 指标先在这里 new 出来（你可以挪到 metrics/ 里，和之前框架统一）
 task_completion_metric = TaskCompletionMetric()
-arg_correctness_metric = ArgumentCorrectnessMetric()
+
 
 # ===== 1. 你已经 setup 好的 Vertex 模型（示意） =====
 from vertexai.generative_models import GenerativeModel
@@ -20,7 +20,7 @@ def call_vertex_chat(prompt: str) -> str:
 # =====================================================
 
 
-@observe(metrics=[arg_correctness_metric])
+@observe()
 def llm_component(query: str):
     """
     这里当成 component-level：
